@@ -351,3 +351,11 @@ BEGIN
     FROM Users
     WHERE login_user=@login_user
 END
+GO
+CREATE PROC [dbo].[GetType](@login_user NVARCHAR(50))
+AS
+BEGIN
+	SELECT id_type
+    FROM Users
+    WHERE login_user=@login_user
+END
