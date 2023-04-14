@@ -359,3 +359,18 @@ BEGIN
     FROM Users
     WHERE login_user=@login_user
 END
+GO
+CREATE TRIGGER [dbo].[Del]
+ON [dbo].[Anime]
+INSTEAD OF DELETE
+AS
+BEGIN
+	declare @id int
+	select @id = id_anime From deleted
+	DELETE FROM AnimeGenres
+	WHERE id_anime = @id
+	DELETE FROM ListAnime
+	WHERE id_anime = @id
+	DELETE FROM Anime
+	WHERE id_anime = @id
+END
